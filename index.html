@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My schedule</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" ></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" ></script>
+    
+</head>
+<body style = "background-color: #f8efe6;">
+    <div class="container">
+        <div class="text-header mt-10">Your schedule</div>
+        <div class="flex flex-row justify-around mt-10" id="buttonBar" style="margin-bottom: 2rem;">
+            <div class="flex flex-col items-center" style="margin-bottom: 1rem;">
+                <div class="hideandshow">
+                    <ion-icon name="menu-outline" style="font-size: 30px;" class="btn btn-4 color-4"
+                        onclick="hiddenButton(this)"></ion-icon>
+                </div>
+                <div id="showandhide" class="showandhide">
+                    <div class="flex-detail">
+                        <div class="m-detail">
+                            <button class="btn btn-1 color-1 mt-2" onclick="changeFilter('all')">all</button>
+                        </div>
+                        <div class="m-detail">
+                            <button class="btn btn-1 color-1 mt-2" onclick="changeFilter('Submitted')">next</button>
+                        </div>
+                        <div class="m-detail">
+                            <button class="btn btn-1 color-1 mt-2" onclick="changeFilter('Missed')">miss</button>
+                        </div>
+                        <div class="m-detail">
+                            <button class="btn btn-4 color-4 mt-2" onclick="openPopup()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col  border-1" style="background-color: #f5e7c5; padding: 1rem;font-size: 20px;">
+            <div class="flex flex-row justify-between">
+                <div class="text-center py-5 showandhide" style="width:20%;">
+                    Date-time
+                </div>
+                <div class="text-center py-5 showandhide" style="width:30%;">
+                    Subject
+                </div>
+                <div class="text-center py-5 showandhide" style="width:50%;">
+                    Description
+                </div>
+                <div class="text-center py-5 hideandshow" style="width:100%;">
+                    Detail Schedule
+                </div>
+            </div>
+        </div>
+        <div id = "table" style ="font-size: 18px;"></div> 
+    </div>
+     <!-- popup -->
+    <div class="popup sizepopup" id = "popup">
+        <h2 id = "popup__header" class="poput__tittle">Create new activity</h2>
+        <div class="form" id = "form">
+            <h4>Due date</h4>
+            <div class="form__input--group">
+                <input type="datetime-local" class="form__input text-center width-input-2 sizeinput datevalid" name ="date" id = "date" required>
+            </div>
+            <h4>Subject</h4>
+            <div class="form__input--group">
+                <input type="text" class="form__input text-center width-input-2 sizeinput" name ="subject" id = "subject" required>
+            </div>
+            <h4>Description</h4>
+            <div class="form__input--group">
+                <input type="text" class="form__input text-center width-input-2 sizeinput" name ="description" id = "description" required>
+            </div>
+            <div>
+                <button id = "submit"  class = "btn-submit mt-5" onclick="waitforadd()">Submit</button>
+                <button  type="close" class = "btn-cancel mt-5" onclick="closePopup()">Cancel</button> 
+            </div>
+        </div>
+    </div>
+    <!-- edit popup -->
+    <div class="edit_popup sizepopup" id = "edit_popup">
+        <h2 id = "popup__header" class="poput__tittle">Edit</h2>
+        <div class="form" id = "form">
+            <h4>Due date</h4>
+            <div class="form__input--group">
+                <input type="datetime-local" class = "form__input text-center width-input-2 sizeinput" name ="edit_date" id = "edit_date">
+            </div>
+            <h4>Subject</h4>
+            <div class="form__input--group">
+                <input type="text" class = "form__input text-center width-input-2 sizeinput" name ="edit_subject" id = "edit_subject">
+            </div>
+            <h4>Description</h4>
+            <div class="form__input--group">
+                <input type="text" class = "form__input text-center width-input-2 sizeinput" name ="edit_description" id = "edit_description">
+            </div>
+            <div><input class="hidden" type="text" id = "edit_id"></div>
+            <div>
+                <button id = "submit" class = "btn-submit mt-5" onclick="editItem()">Submit</button>
+                <button  type="close" class = "btn-cancel mt-5" onclick="closeEditPopup()">Cancel</button>
+            </div>
+            
+        </div>
+    </div>
+    <script type="module" src="server.js"></script>
+    <script src="popUp.js"></script>
+</body>
+</html>
